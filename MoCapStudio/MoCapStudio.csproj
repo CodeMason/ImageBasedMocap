@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\build\OpenCvSharp-AnyCPU.props" Condition="Exists('..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\build\OpenCvSharp-AnyCPU.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{677830D8-5E84-4388-A0EA-3936758D958A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MoCapStudio</RootNamespace>
+    <AssemblyName>MoCapStudio</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>a7553945</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls">
+      <HintPath>..\packages\AForge.Controls.2.2.5\lib\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\packages\AForge.Imaging.2.2.5\lib\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math">
+      <HintPath>..\packages\AForge.Math.2.2.5\lib\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Vision">
+      <HintPath>..\packages\AForge.Vision.2.2.5\lib\AForge.Vision.dll</HintPath>
+    </Reference>
+    <Reference Include="DirectShowLib-2005">
+      <HintPath>..\packages\Splicer.1.1\lib\net45\DirectShowLib-2005.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownSharp">
+      <HintPath>..\packages\StackExchange.MarkdownSharp.1.5.1.0\lib\net35\MarkdownSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp">
+      <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.Blob">
+      <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.Blob.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.CPlusPlus">
+      <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.CPlusPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.Extensions">
+      <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.UserInterface">
+      <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.UserInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SharpAvi">
+      <HintPath>..\packages\SharpAvi.2.1.0\lib\net45\SharpAvi.dll</HintPath>
+    </Reference>
+    <Reference Include="Splicer">
+      <HintPath>..\packages\Splicer.1.1\lib\net45\Splicer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calibration\CalibrationData.cs" />
+    <Compile Include="Calibration\CalibrationPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calibration\CalibrationPage.Designer.cs">
+      <DependentUpon>CalibrationPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calibration\LensCalibrator.cs" />
+    <Compile Include="Calibration\SpaceCalibrator.cs" />
+    <Compile Include="Controls\CameraCheckboxListCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CameraCheckboxListCtrl.Designer.cs">
+      <DependentUpon>CameraCheckboxListCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CameraListCtrl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CameraListCtrl.Designer.cs">
+      <DependentUpon>CameraListCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LaunchPad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LaunchPad.Designer.cs">
+      <DependentUpon>LaunchPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MarkdownBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MarkdownBrowser.Designer.cs">
+      <DependentUpon>MarkdownBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ReflectiveForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ReflectiveForm.Designer.cs">
+      <DependentUpon>ReflectiveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RetargetingTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RetargetingTree.Designer.cs">
+      <DependentUpon>RetargetingTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SkeletonTree.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SkeletonTree.Designer.cs">
+      <DependentUpon>SkeletonTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\USBCameraCtrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Data\GlobalData.cs" />
+    <Compile Include="Data\ProcessingSettings.cs" />
+    <Compile Include="Data\RetargetingSettings.cs" />
+    <Compile Include="Dlg\ErrorDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\ErrorDlg.Designer.cs">
+      <DependentUpon>ErrorDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dlg\NewCameraDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dlg\NewCameraDlg.Designer.cs">
+      <DependentUpon>NewCameraDlg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorHandler.cs" />
+    <Compile Include="ImageUtil\BitmapUtil.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PluginManager.cs" />
+    <Compile Include="Processing\AxisMedianAlgorithm.cs" />
+    <Compile Include="Processing\ChunkFittingAlgorithm.cs" />
+    <Compile Include="Processing\JitterReduction.cs" />
+    <Compile Include="Processing\NewProcessing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\NewProcessing.Designer.cs">
+      <DependentUpon>NewProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Processing\PlaybackView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\PlaybackView.Designer.cs">
+      <DependentUpon>PlaybackView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Processing\ProcessingPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Processing\ProcessingPage.Designer.cs">
+      <DependentUpon>ProcessingPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Processing\ProcessingThread.cs" />
+    <Compile Include="Processing\SkeletonRetarget.cs" />
+    <Compile Include="Processing\TransformOffset.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recording\CameraSetup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Recording\CameraSetup.Designer.cs">
+      <DependentUpon>CameraSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recording\RecordingPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Recording\RecordingPage.Designer.cs">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recording\RecordingThread.cs" />
+    <Compile Include="Recording\SequenceRecorder.cs" />
+    <Compile Include="Recording\ThreadedRecorder.cs" />
+    <Compile Include="Shared\CameraCollection.cs" />
+    <Compile Include="Shared\IMocapRecorder.cs" />
+    <Compile Include="Shared\OpenCVUtil.cs" />
+    <Compile Include="Shared\Recorders\IPMocapRecorder.cs" />
+    <Compile Include="Shared\Recorders\USBMocapRecorder.cs" />
+    <EmbeddedResource Include="Calibration\CalibrationPage.resx">
+      <DependentUpon>CalibrationPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CameraCheckboxListCtrl.resx">
+      <DependentUpon>CameraCheckboxListCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LaunchPad.resx">
+      <DependentUpon>LaunchPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MarkdownBrowser.resx">
+      <DependentUpon>MarkdownBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RetargetingTree.resx">
+      <DependentUpon>RetargetingTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SkeletonTree.resx">
+      <DependentUpon>SkeletonTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\ErrorDlg.resx">
+      <DependentUpon>ErrorDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dlg\NewCameraDlg.resx">
+      <DependentUpon>NewCameraDlg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\NewProcessing.resx">
+      <DependentUpon>NewProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Processing\ProcessingPage.resx">
+      <DependentUpon>ProcessingPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Recording\CameraSetup.resx">
+      <DependentUpon>CameraSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recording\RecordingPage.resx">
+      <DependentUpon>RecordingPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ASL - Apache Software Foundation License.txt" />
+    <Content Include="Utilities\Audio\Formats.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MoCapPluginLib\MoCapPluginLib.csproj">
+      <Project>{7d4f902b-643b-4072-83e6-f28fcc118d61}</Project>
+      <Name>MoCapPluginLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\build\OpenCvSharp-AnyCPU.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\build\OpenCvSharp-AnyCPU.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
