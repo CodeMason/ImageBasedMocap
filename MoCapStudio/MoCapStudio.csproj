@@ -55,9 +55,6 @@
     <Reference Include="AForge.Vision">
       <HintPath>..\packages\AForge.Vision.2.2.5\lib\AForge.Vision.dll</HintPath>
     </Reference>
-    <Reference Include="DirectShowLib-2005">
-      <HintPath>..\packages\Splicer.1.1\lib\net45\DirectShowLib-2005.dll</HintPath>
-    </Reference>
     <Reference Include="MarkdownSharp">
       <HintPath>..\packages\StackExchange.MarkdownSharp.1.5.1.0\lib\net35\MarkdownSharp.dll</HintPath>
     </Reference>
@@ -77,12 +74,6 @@
       <HintPath>..\packages\OpenCvSharp-AnyCPU.2.4.10.20150604\lib\net45\OpenCvSharp.UserInterface.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SharpAvi">
-      <HintPath>..\packages\SharpAvi.2.1.0\lib\net45\SharpAvi.dll</HintPath>
-    </Reference>
-    <Reference Include="Splicer">
-      <HintPath>..\packages\Splicer.1.1\lib\net45\Splicer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -96,6 +87,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AForge\AVIReader.cs" />
+    <Compile Include="AForge\AVIVideoSource.cs" />
+    <Compile Include="AForge\AVIWriter.cs" />
+    <Compile Include="AForge\Win32.cs" />
     <Compile Include="Calibration\CalibrationData.cs" />
     <Compile Include="Calibration\CalibrationPage.cs">
       <SubType>UserControl</SubType>
@@ -141,6 +136,12 @@
     <Compile Include="Controls\RetargetingTree.Designer.cs">
       <DependentUpon>RetargetingTree.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Rotoscoper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Rotoscoper.Designer.cs">
+      <DependentUpon>Rotoscoper.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SkeletonTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +168,7 @@
     </Compile>
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="ImageUtil\BitmapUtil.cs" />
+    <Compile Include="Interfaces\IProgramTerminated.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +208,7 @@
     <Compile Include="Recording\CameraSetup.Designer.cs">
       <DependentUpon>CameraSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recording\IVideoWriter.cs" />
     <Compile Include="Recording\RecordingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +218,7 @@
     <Compile Include="Recording\RecordingThread.cs" />
     <Compile Include="Recording\SequenceRecorder.cs" />
     <Compile Include="Recording\ThreadedRecorder.cs" />
+    <Compile Include="Recording\Writers\AVIVideoWriter.cs" />
     <Compile Include="Shared\CameraCollection.cs" />
     <Compile Include="Shared\IMocapRecorder.cs" />
     <Compile Include="Shared\OpenCVUtil.cs" />
@@ -281,10 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ASL - Apache Software Foundation License.txt" />
-    <Content Include="Utilities\Audio\Formats.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoCapPluginLib\MoCapPluginLib.csproj">

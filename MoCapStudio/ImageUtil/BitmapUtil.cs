@@ -21,10 +21,9 @@ namespace MoCapStudio.ImageUtil
             Bitmap ret = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
             for (int i = 0; i < images.Count; ++i)
             {
-                for (int x = 0; x < targetSize.Width; ++x)
+                using (Graphics g = Graphics.FromImage(ret))
                 {
-                    for (int y = 0; y < targetSize.Height; ++y)
-                        ret.SetPixel(x + (i * targetSize.Width), y, images[i].GetPixel(x, y));
+                    g.DrawImage(images[i], i * targetSize.Width, 0);
                 }
             }
             return ret;
@@ -35,6 +34,24 @@ namespace MoCapStudio.ImageUtil
             if (input.Width == targetSize.Width && input.Height == targetSize.Height)
                 return input;
             return new Bitmap(input, targetSize);
+        }
+
+        public static List<Bitmap> FromStrip(Bitmap input, int count)
+        {
+            List<Bitmap> ret = new List<Bitmap>();
+            int widthEach = input.Width / count;
+            int height = input.Height;
+
+            for (int i = 0; i < count; ++i)
+            {
+                Bitmap bmp = new Bitmap(widthEach, height);
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    g.DrawImage(input, 0, 0, new Rectangle(i * widthEach, 0, widthEach, height), GraphicsUnit.Pixel);
+                }
+                ret.Add(bmp);
+            }
+            return ret;
         }
     }
 }

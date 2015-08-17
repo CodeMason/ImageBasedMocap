@@ -30,6 +30,7 @@ namespace MoCapStudio.Calibration
             reqTimer_.Interval = 500;
             reqTimer_.Elapsed += reqTimer__Elapsed;
             reqTimer_.Start();
+            Program.AddTimer(reqTimer_);
 
             btnAddUSB.Click += btnAddUSB_Click;
             btnAddIP.Click += btnAddIP_Click;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MoCapStudio.Data;
+using MoCapStudio.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +10,7 @@ using System.Xml;
 
 namespace MoCapStudio.Shared
 {
+    [IProgramTerminated]
     public class CameraCollection : ObservableCollection<IMocapRecorder>
     {
         public Calibration.SpaceCalibrationData SpacialCalibration { get; set; }
@@ -60,6 +63,12 @@ namespace MoCapStudio.Shared
                     SpacialCalibration.Read(node as XmlElement);
                 }
             }
+        }
+
+        static void Terminate()
+        {
+            foreach (Shared.IMocapRecorder rec in GlobalData.GetInst().Cameras)
+                rec.StopRecording();
         }
     }
 }

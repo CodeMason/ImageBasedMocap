@@ -1,4 +1,5 @@
 ﻿using MoCapStudio.Data;
+using MoCapStudio.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,11 @@ namespace MoCapStudio
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             loaded = false;
+            foreach (IMocapRecorder rec in GlobalData.GetInst().Cameras)
+            {
+                rec.StopRecording();
+            }
+            Application.Exit();
         }
 
         void errorTimer__Elapsed(object sender, System.Timers.ElapsedEventArgs e)

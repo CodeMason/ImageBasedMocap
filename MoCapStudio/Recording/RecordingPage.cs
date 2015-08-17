@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MoCapStudio.Data;
 using MoCapStudio.Shared;
+using MoCapStudio.Recording.Writers;
 
 namespace MoCapStudio.Recording
 {
@@ -17,11 +18,13 @@ namespace MoCapStudio.Recording
         bool recording_ = false;
         System.Diagnostics.Stopwatch watch_;
         System.Timers.Timer recordingTimer_;
+        ThreadedRecorder recorder_;
         
         public RecordingPage()
         {
             InitializeComponent();
             recordingTimer_ = new System.Timers.Timer();
+            Program.AddTimer(recordingTimer_);
             recordingTimer_.Interval = 250;
             recordingTimer_.Elapsed += recordingTimer__Elapsed;
             watch_ = new System.Diagnostics.Stopwatch();
@@ -62,6 +65,7 @@ namespace MoCapStudio.Recording
                     }
                 }
 
+                recorder_ = new ThreadedRecorder(GlobalData.GetInst().Cameras, new AVIVideoWriter { FileName="Test.avi", OutputSize = new Size(640*2,480) } );
                 btnRecord.Text = "Stop";
                 recording_ = true;
                 recordingTimer_.Start();
@@ -73,16 +77,18 @@ namespace MoCapStudio.Recording
                     player.Width = 320;
                     player.Height = 240;
                     player.VideoSource = rec.GetSource();
-                    rec.StartRecording();
                     videoFlow.Controls.Add(player);
                 }
+                recorder_.Start();
             }
         }
 
         void StopRecording()
         {
-            foreach (IMocapRecorder rec in GlobalData.GetInst().Cameras)
-                rec.StopRecording();
+            if (recorder_ != null)
+                recorder_.Stop();
+            //foreach (IMocapRecorder rec in GlobalData.GetInst().Cameras)
+            //    rec.StopRecording();
             videoFlow.Controls.Clear();
         }
     }

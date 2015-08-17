@@ -50,7 +50,7 @@ namespace MoCapStudio.Shared.Recorders
         void stream__NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
             if (OnFrame != null)
-                OnFrame.Invoke(sender, new FrameEventArgs { Image = eventArgs.Frame });
+                OnFrame.Invoke(this, new FrameEventArgs { Image = eventArgs.Frame });
         }
 
         public void Snapshot()

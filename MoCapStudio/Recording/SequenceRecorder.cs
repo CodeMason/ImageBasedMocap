@@ -34,9 +34,11 @@ namespace MoCapStudio.Recording
             countLeft_ = count;
             go_ = false;
             captureTimer = new System.Timers.Timer((double)(initdelay * 1000));
+            Program.AddTimer(captureTimer);
             captureTimer.Elapsed += timer_Elapsed;
             captureTimer.Start();
             beepTimer = new System.Timers.Timer(1000);
+            Program.AddTimer(beepTimer);
             beepTimer.Elapsed += beepTimer_Elapsed;
             beepTimer.Start();
             if (StartCallback != null)
@@ -44,6 +46,12 @@ namespace MoCapStudio.Recording
             recorder.StartRecording();
 
             recorder.OnFrame += recorder_OnFrame;
+        }
+
+        ~SequenceRecorder()
+        {
+            captureTimer.Stop();
+            beepTimer.Stop();
         }
 
         public void recorder_OnFrame(object sender, FrameEventArgs args)

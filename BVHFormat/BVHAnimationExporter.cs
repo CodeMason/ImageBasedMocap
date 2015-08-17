@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoCapPluginLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BVHFormat
     /// Exports the animation to BVH
     /// </summary>
     [MoCapPluginLib.AdvertiseSettings(Name = "BVH Animation")]
-    public class BVHAnimationExporter : MoCapPluginLib.IAnimationExporter
+    public class BVHAnimationExporter : IAnimationExporter
     {
     }
 }

@@ -262,6 +262,11 @@ namespace BVHFormat
             return _bones;
         }
 
+        public BvhBone getRootBone()
+        {
+            return _rootBone;
+        }
+
 
         /**
         * call before parse BVH
@@ -386,10 +391,10 @@ namespace BVHFormat
             {
                 if (c + bone.getNbChannels() > n)
                 {
-                n -= c;
-                return bone.getChannels()[n];
+                    n -= c;
+                    return bone.getChannels()[n];
                 }else{
-                c += bone.getNbChannels();  
+                    c += bone.getNbChannels();  
                 }
             }
             return null;

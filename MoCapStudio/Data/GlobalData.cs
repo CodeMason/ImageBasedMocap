@@ -1,4 +1,5 @@
-﻿using MoCapStudio.Shared;
+﻿using MoCapStudio.Interfaces;
+using MoCapStudio.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Xml;
 
 namespace MoCapStudio.Data
 {
+    [IProgramTerminated]
     public class GlobalData
     {
         static GlobalData inst_;
@@ -33,6 +35,11 @@ namespace MoCapStudio.Data
         public void Save(string file)
         {
             Cameras.WriteMetadata(file);
+        }
+
+        static void Terminate()
+        {
+            GlobalData.GetInst().Save("MostRecent.xml");
         }
     }
 }

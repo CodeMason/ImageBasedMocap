@@ -34,7 +34,7 @@ namespace MoCapStudio.Dlg
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
         }
     }

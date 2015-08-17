@@ -1,4 +1,5 @@
 ﻿using OpenCvSharp;
+using OpenCvSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -22,9 +23,19 @@ namespace MoCapStudio.Shared
             return ret;
         }
 
+        public static Bitmap BitmapFromIplImage(IplImage img)
+        {
+            return img.ToBitmap();
+        }
+
         public static CvColor ToCVColor(this Color color)
         {
             return new CvColor(color.R, color.G, color.B);
+        }
+
+        public static Color ToColor(this CvColor color)
+        {
+            return Color.FromArgb(color.R, color.G, color.B);
         }
 
         public static CvScalar CVScalarFromColor(Color color, bool alpha = false)
